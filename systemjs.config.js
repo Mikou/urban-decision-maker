@@ -6,7 +6,7 @@
 
   // map tells the System loader where to look for things
   var map = {
-    'app':                        'app', // 'dist',
+    'app':                        'dist/app', // 'dist',
 
     '@angular':                   'node_modules/@angular',
     'angular2-in-memory-web-api': 'node_modules/angular2-in-memory-web-api',
@@ -18,6 +18,32 @@
     'app':                        { main: 'main.js',  defaultExtension: 'js' },
     'rxjs':                       { defaultExtension: 'js' },
     'angular2-in-memory-web-api': { main: 'index.js', defaultExtension: 'js' },
+
+    // below lines are from Mathias
+    "@angular/core": {
+       main: "bundles/core.umd.js" //use the ESM entry point for bundling tools
+    },
+    "@angular/common": {
+        main: "bundles/common.umd.js" //use the ESM entry point for bundling tools
+    },
+    "@angular/compiler": {
+        main: "bundles/compiler.umd.js" //use the ESM entry point for bundling tools
+    },
+    "@angular/forms": {
+        main: "bundles/forms.umd.js"
+    },
+    "@angular/http": {
+        main: "bundles/http.umd.js"
+    },
+    "@angular/platform-browser": {
+        main: "bundles/platform-browser.umd.js" //use the ESM entry point for bundling tools
+    },
+    "@angular/platform-browser-dynamic": {
+        main: "bundles/platform-browser-dynamic.umd.js" //use the ESM entry point for bundling tools
+    },
+    "@angular/router": {
+        main: "bundles/router.umd.js" //use the ESM entry point for bundling tools
+    },
   };
 
   var ngPackageNames = [
