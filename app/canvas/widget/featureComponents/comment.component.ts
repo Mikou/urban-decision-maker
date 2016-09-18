@@ -3,11 +3,17 @@ import {Component} from '@angular/core';
 @Component({
     selector: 'comment',
     template: `
-      <h3>comment</h3>
-      <label>name:</label>
-      <input type="text" />
-      <label>comment:</label>
-      <textarea></textarea>
+      <h3>Write a comment here</h3>
+      <p>
+        <label>topic:</label>
+        <input type="text" />
+      </p>
+      <p>
+        <textarea></textarea>
+      </p>
+      <p>
+        <button>Send</button>
+      </p>
     `
 })
 export class CommentFeatureComponent {

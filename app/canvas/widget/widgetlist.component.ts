@@ -10,7 +10,6 @@ import { WidgetlistitemComponent } from './widgetlistitem.component';
     styles: [`
     ud2d-widgetlistitem {
         float:left;
-        background-color:#eee;
         padding:10px;
         margin:10px;
         border:1px solid #ccf;
@@ -23,8 +22,7 @@ import { WidgetlistitemComponent } from './widgetlistitem.component';
       [item]="widgetitem"
       makeDroppable (dropped)="droppedWidget($event, widgetitem)"
       (deleteWidgetNotify)="onDelete($event)"
-      #target
-    >
+      #target>
       <div></div>
     </ud2d-widgetlistitem>
   `
