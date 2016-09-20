@@ -17,7 +17,8 @@ export class FeaturelistComponent {
 
   featureitems = [
     {id:0, type:"featureItem", name:"comment", cptType:"comment", config:{
-
+      topicField: "WRITE A TOPIC"
     }},
+    {id:1, type:"featureItem", name:"comments archive", cptType:"commentarchive", config:{}},
   ];
 }

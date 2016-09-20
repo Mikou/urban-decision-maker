@@ -1,9 +1,10 @@
 import {Component} from '@angular/core';
 
 @Component({
-    selector: 'comment',
+    selector: 'ud2d-comment',
     template: `
       <h3>Write a comment here</h3>
+ 
       <p>
         <label>topic:</label>
         <input type="text" />

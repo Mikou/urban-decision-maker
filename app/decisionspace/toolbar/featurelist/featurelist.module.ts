@@ -1,6 +1,3 @@
-// Module structure example: http://plnkr.co/edit/?p=preview
-// https://angular.io/docs/ts/latest/guide/ngmodule.html
-
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { DraggableModule } from '../../shared/draggable/draggable.module';

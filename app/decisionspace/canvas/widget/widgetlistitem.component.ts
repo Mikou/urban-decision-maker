@@ -13,6 +13,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { MakeDraggable } from '../../shared/draggable/make-draggable.directive';
 import {VisualizationComponent} from './visualization.component';
 import { CommentFeatureComponent } from './featureComponents/comment.component';
+import { CommentarchiveComponent } from './featureComponents/commentarchive.component';
 
 @Component({
   selector: 'ud2d-widgetlistitem',
@@ -47,9 +48,10 @@ export class WidgetlistitemComponent {
             cptType = VisualizationComponent;
         } else if(this.item.cptType === 'comment') {
             cptType = CommentFeatureComponent;
+        } else if(this.item.cptType === 'commentarchive') {
+            cptType = CommentarchiveComponent;
         }
 
-        console.log(this.item.cptType, cptType);
         let factory = this.componentFactoryResolver.resolveComponentFactory(cptType);
         this.cmpRef = this.target.createComponent(factory)
         

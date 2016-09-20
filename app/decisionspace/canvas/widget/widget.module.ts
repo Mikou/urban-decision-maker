@@ -5,6 +5,10 @@ import { WidgetlistComponent } from './widgetlist.component';
 import { WidgetlistitemComponent } from './widgetlistitem.component';
 import { CommentFeatureComponent } from './featureComponents/comment.component';
 import { VisualizationComponent } from './visualization.component';
+import { CommentarchiveComponent } from './featureComponents/commentarchive.component';
+
+
+import { WidgetService } from './widget.service';
 
 /* Feature module */
 
@@ -14,9 +18,17 @@ import { VisualizationComponent } from './visualization.component';
     CommentFeatureComponent, 
     WidgetlistComponent, 
     WidgetlistitemComponent, 
+    VisualizationComponent,
+    CommentarchiveComponent
+  ],
+  entryComponents: [ 
+    CommentFeatureComponent, 
+    CommentarchiveComponent,
     VisualizationComponent 
   ],
-  entryComponents: [ CommentFeatureComponent, VisualizationComponent ],
+  providers: [
+    WidgetService
+  ],
   exports: [ WidgetlistComponent ]
 })
 export class WidgetModule {}

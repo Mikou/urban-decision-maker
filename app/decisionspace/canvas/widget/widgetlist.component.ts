@@ -1,9 +1,9 @@
-import { Component, ViewChild,ViewContainerRef, Compiler, ComponentFactoryResolver, ComponentRef } from '@angular/core';
-
-//import { VislistitemComponent} from './vislistitem.component';
+import { Component, ViewChild,ViewContainerRef, Compiler, ComponentFactoryResolver, ComponentRef, Input, OnInit } from '@angular/core';
 import { CommentFeatureComponent } from './featureComponents/comment.component';
 import { WidgetlistitemComponent } from './widgetlistitem.component';
+import { ActivatedRoute } from '@angular/router';
 
+import { WidgetService } from './widget.service';
 
 @Component({
   selector: 'ud2d-widgetlist',
@@ -23,24 +23,37 @@ import { WidgetlistitemComponent } from './widgetlistitem.component';
       makeDroppable (dropped)="droppedWidget($event, widgetitem)"
       (deleteWidgetNotify)="onDelete($event)"
       #target>
-      <div></div>
     </ud2d-widgetlistitem>
   `
 })
 
-export class WidgetlistComponent {
+export class WidgetlistComponent implements OnInit {
+  @Input() decisionspaceId:number;
   @ViewChild('target', {read: ViewContainerRef}) target:any;
   // DYNAMIC LOADING COMPONENT:
   //http://stackoverflow.com/questions/36325212/angular-2-dynamic-tabs-with-user-click-chosen-components/36325468#36325468
   title = 'widget list';
   cmpRef:ComponentRef<any>;
+  widgetitems:any;
+  constructor(
+    private compiler: Compiler ,
+    private componentFactoryResolver: ComponentFactoryResolver,
+    private widgetService: WidgetService,
+    private activatedRoute: ActivatedRoute
+    ) {}
 
-  constructor(private compiler: Compiler ,private componentFactoryResolver: ComponentFactoryResolver) {
-    
+  ngOnInit() {
+    this.activatedRoute.params.subscribe(params => {
+      this.widgetService.getWidgetsSlowly(params["id"]).then(widgets => {
+        console.log("widgets ready:", widgets);
+        this.widgetitems = widgets;
+        console.log("widgets ready:", this.widgetitems);
+      })
+    });
   }
 
   onDelete(widgetId:number):void {
-    this.widgetitems.forEach((widget, index, object) => {
+    this.widgetitems.forEach((widget:any, index:any, object:any) => {
         if(widget.id == widgetId) object.splice(index,1);
     });
   }
@@ -55,7 +68,7 @@ export class WidgetlistComponent {
       }
     }
     this.widgetitems[src].order = trg;
-    this.widgetitems.sort((a, b) => a.order - b.order);
+    this.widgetitems.sort((a:any, b:any) => a.order - b.order);
   }
 
   deployVisualization(name:string, url:string) {
@@ -86,7 +99,7 @@ export class WidgetlistComponent {
     }
   };
 
-  widgetitems = [
+  /*widgetitems = [
     {id:1, order:0, name:"widget1", type:"widget", cptType: 'visualization', 
     config: {
       url:"http://dummyvis.com/#1"}
@@ -99,5 +112,5 @@ export class WidgetlistComponent {
     config: {
       url:"http://dummyvis.com/#3"}
     },
-  ];
+  ];*/
 }

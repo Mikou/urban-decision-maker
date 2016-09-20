@@ -10,7 +10,7 @@
 
     '@angular':                   'node_modules/@angular',
     'angular2-in-memory-web-api': 'node_modules/angular2-in-memory-web-api',
-    'rxjs':                       'node_modules/rxjs'
+    'rxjs':                       'node_modules/rxjs',
   };
 
   // packages tells the System loader how to load when no filename and/or no extension
@@ -18,32 +18,6 @@
     'app':                        { main: 'main.js',  defaultExtension: 'js' },
     'rxjs':                       { defaultExtension: 'js' },
     'angular2-in-memory-web-api': { main: 'index.js', defaultExtension: 'js' },
-
-    // below lines are from Mathias
-    "@angular/core": {
-       main: "bundles/core.umd.js" //use the ESM entry point for bundling tools
-    },
-    "@angular/common": {
-        main: "bundles/common.umd.js" //use the ESM entry point for bundling tools
-    },
-    "@angular/compiler": {
-        main: "bundles/compiler.umd.js" //use the ESM entry point for bundling tools
-    },
-    "@angular/forms": {
-        main: "bundles/forms.umd.js"
-    },
-    "@angular/http": {
-        main: "bundles/http.umd.js"
-    },
-    "@angular/platform-browser": {
-        main: "bundles/platform-browser.umd.js" //use the ESM entry point for bundling tools
-    },
-    "@angular/platform-browser-dynamic": {
-        main: "bundles/platform-browser-dynamic.umd.js" //use the ESM entry point for bundling tools
-    },
-    "@angular/router": {
-        main: "bundles/router.umd.js" //use the ESM entry point for bundling tools
-    },
   };
 
   var ngPackageNames = [
@@ -55,7 +29,7 @@
     'platform-browser',
     'platform-browser-dynamic',
     'router',
-    'router-deprecated',
+    //'router-deprecated',
     'upgrade',
   ];
 
@@ -76,7 +50,7 @@
   ngPackageNames.forEach(setPackageConfig);
 
   // No umd for router yet
-  packages['@angular/router'] = { main: 'index.js', defaultExtension: 'js' };
+  //packages['@angular/router'] = { main: 'index.js', defaultExtension: 'js' };
 
   var config = {
     map: map,
