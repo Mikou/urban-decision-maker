@@ -29,6 +29,7 @@
     'platform-browser',
     'platform-browser-dynamic',
     'router',
+    'immutable',
     //'router-deprecated',
     'upgrade',
   ];

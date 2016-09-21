@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { DecisionspacesComponent } from './decisionspace/decisionspaces.component';
+import { SecurityComponent } from './security/security.component';
 
 @Component({
   selector: 'ud2d',
@@ -22,6 +23,12 @@ import { DecisionspacesComponent } from './decisionspace/decisionspaces.componen
 
     header nav .profile {
       float:right;
+    }
+
+    ud2d-security {
+      position: absolute;
+      right: 0;
+      top: 0;
     }
 
     content {
@@ -47,7 +54,8 @@ import { DecisionspacesComponent } from './decisionspace/decisionspaces.componen
         <a routerLink="/decisionspaces" routerLinkActive="active">All decision spaces</a>
         <a routerLink="/decisionspaces">My decision spaces</a>
 
-        <a class="profile" href="#">user info: No yet ready :(</a>
+        <ud2d-security>ok</ud2d-security>
+
       </nav>
     </header>
 

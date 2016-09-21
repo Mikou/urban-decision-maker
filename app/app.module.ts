@@ -8,6 +8,7 @@ import { HttpModule }    from '@angular/http';
 import { AppComponent } from './app.component'
 
 import { DecisionspaceModule } from './decisionspace/decisionspace.module'
+import { SecurityModule } from './security/security.module'
 
 import {routing} from './app.routing';
 
@@ -18,6 +19,7 @@ import {routing} from './app.routing';
     FormsModule,
     HttpModule,
     DecisionspaceModule,
+    SecurityModule,
     routing
   ],
   declarations: [ AppComponent ],

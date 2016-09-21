@@ -21,7 +21,7 @@ export class DecisionspacesComponent {
         {id:1, name:'decision space 1', path: '1'},
         {id:2, name:'decision space 2', path: '2'},
         {id:3, name:'decision space 3', path: '3'},
-        {id:4, name:'decision space 4', path: '4'}
+        {id:4, name:'decision space 4', path: '4'},
         {id:4, name:'decision space 5', path: '5'}
     ]
 

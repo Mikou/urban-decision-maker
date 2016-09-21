@@ -2,11 +2,15 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {ToolbarComponent} from './toolbar/toolbar.component'
 
+import { SecurityService } from '../security/security.service';
+
 @Component({
   selector: 'ud2d',
   template: `
-    <ud2d-toolbar></ud2d-toolbar>
-    <ud2d-canvas [decisionspaceId]="'ds'">{{ds}}</ud2d-canvas>
+    <div class="wrapper">
+      <ud2d-toolbar *ngIf="role==='admin'"></ud2d-toolbar>
+      <ud2d-canvas [decisionspaceId]="'ds'" [ngClass]="role"></ud2d-canvas>
+    </div>
   `,
   styles: [`
     #content {
@@ -18,35 +22,47 @@ import {ToolbarComponent} from './toolbar/toolbar.component'
       background-color:#eee;
       padding:10px;
     }
+    .wrapper { 
+      background: #eee; 
+      overflow:hidden; 
+      position:relative; 
+    }
     ud2d-toolbar {
-      position:absolute;
-      top:10px;
-      left:10px;
-      width:300px;
-      bottom:10px;
+      padding:0 10px;
+      width: 200px; float: left; height: 200px;
+      height:100%;
       background-color:#fff;
     }
     ud2d-canvas {
-      position:absolute;
-      top:10px;
-      left:320px;
-      right:10px;
-      bottom:10px;
+      position:relative;
+      width: 100%; float:right;
+      height:100%;
       background-color:#fff;
     }
+    ud2d-canvas.admin {
+      padding:0 10px;
+      margin: 0 -250px 0 auto;
+    }
   `]
-
 })
 export class DecisionspaceComponent {
 
-  constructor(private activatedRoute: ActivatedRoute) {
+  role:string
+
+  constructor(
+    private activatedRoute: ActivatedRoute
+    private securityService: SecurityService
+  ) {
     
   }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(params => {
-      //console.log(params["id"]);
-    });
+    this.securityService.selectedUser$.subscribe(
+      user => {
+        if(user) {
+          this.role = user.role;
+        }
+      }
+    )
   }
-  ds = "test";
 }
