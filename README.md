@@ -1,4 +1,3 @@
-# UD2D. DMS
+# Urban Decision Maker
 
-And Angular2 app to develop a rich GUI for supporting end-users in Decision 
-Making
+Urban decision maker web cli.
