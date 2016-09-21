@@ -25,11 +25,7 @@ import { SecurityComponent } from './security/security.component';
       float:right;
     }
 
-    ud2d-security {
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
+    
 
     content {
       position:absolute;
@@ -54,7 +50,7 @@ import { SecurityComponent } from './security/security.component';
         <a routerLink="/decisionspaces" routerLinkActive="active">All decision spaces</a>
         <a routerLink="/decisionspaces">My decision spaces</a>
 
-        <ud2d-security>ok</ud2d-security>
+        <div class="profile">switch user: <ud2d-security></ud2d-security></div>
 
       </nav>
     </header>

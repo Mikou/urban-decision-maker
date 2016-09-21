@@ -9,7 +9,7 @@ import {BehaviorSubject}      from 'rxjs/BehaviorSubject';
 @Injectable()
 export class SecurityService {
 
-    _selectedUser:BehaviorSubject<User> = new BehaviorSubject<User>();
+    _selectedUser:BehaviorSubject<User> = new BehaviorSubject<User>(null);
     selectedUser$ = this._selectedUser.asObservable();
 
 

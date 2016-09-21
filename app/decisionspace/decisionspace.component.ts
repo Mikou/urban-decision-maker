@@ -50,7 +50,7 @@ export class DecisionspaceComponent {
   role:string
 
   constructor(
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
     private securityService: SecurityService
   ) {
     
