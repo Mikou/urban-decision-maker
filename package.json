@@ -1,7 +1,7 @@
 {
-  "name": "angular2-quickstart",
+  "name": "angular2-urban-decision-maker",
   "version": "1.0.0",
-  "description": "QuickStart package.json from the documentation, supplemented with testing support",
+  "description": "Urban decision maker web CLI",
   "scripts": {
     "start": "tsc && concurrently \"tsc -w\" \"lite-server --entry-file=index.html\" ",
     "docker-build": "docker build -t ng2-quickstart .",
