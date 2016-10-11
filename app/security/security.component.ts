@@ -18,13 +18,6 @@ export class SecurityComponent implements OnInit {
     constructor(
         private securityService: SecurityService
     ) {
-
-        securityService.selectedUser$.subscribe(
-            user => {
-                console.log("CHANGED USER:", user);
-            }
-        )
-
     }
 
     ngOnInit() {

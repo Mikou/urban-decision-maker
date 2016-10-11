@@ -7,10 +7,11 @@ import { HttpModule }    from '@angular/http';
 
 import { AppComponent } from './app.component'
 
+import { ProfileModule } from './profile/profile.module'
 import { DecisionspaceModule } from './decisionspace/decisionspace.module'
 import { SecurityModule } from './security/security.module'
-
-import {routing} from './app.routing';
+import { AppService } from './app.service'
+import { routing } from './app.routing';
 
 
 @NgModule({
@@ -19,10 +20,12 @@ import {routing} from './app.routing';
     FormsModule,
     HttpModule,
     DecisionspaceModule,
+    ProfileModule,
     SecurityModule,
     routing
   ],
   declarations: [ AppComponent ],
+  providers: [ AppService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule {}

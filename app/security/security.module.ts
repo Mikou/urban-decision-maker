@@ -4,11 +4,14 @@ import { FormsModule }   from '@angular/forms';
 
 import { SecurityComponent } from './security.component';
 import { SecurityService } from './security.service';
+import { SocketFactoryModule } from '../socketFactory/socketFactory.module'
+
 
 @NgModule({
   imports: [ 
     BrowserModule,
-    FormsModule
+    FormsModule,
+    SocketFactoryModule
   ],
   providers: [ SecurityService ],
   declarations: [ SecurityComponent ],

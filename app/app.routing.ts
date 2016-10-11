@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { DecisionspacesComponent } from './decisionspace/decisionspaces.component';
 import { DecisionspaceComponent } from './decisionspace/decisionspace.component';
+import { ProfilesComponent } from './profile/profiles.component';
 
 const appRoutes: Routes = [
   {
@@ -22,7 +23,11 @@ const appRoutes: Routes = [
     {
     path: 'decisionspaces/:id',
     component: DecisionspaceComponent
-  }
+  },
+  {
+    path: 'people',
+    component: ProfilesComponent,
+  },
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);

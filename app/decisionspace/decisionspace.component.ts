@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {ToolbarComponent} from './toolbar/toolbar.component'
-
+import { Router } from '@angular/router';
 import { SecurityService } from '../security/security.service';
+import { DecisionspaceService } from './decisionspace.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'ud2d',
@@ -48,15 +50,21 @@ import { SecurityService } from '../security/security.service';
 export class DecisionspaceComponent {
 
   role:string
+  decisionspaceId:string;
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private securityService: SecurityService
-  ) {
+    private securityService: SecurityService,
+    private _dsService: DecisionspaceService
     
-  }
+  ) {}
 
   ngOnInit() {
+    this.activatedRoute.params.subscribe(p => {
+      console.log("ID:", p['id']);
+      //this._dsService.connect(Number.parseInt(p['id']));
+    });
+
     this.securityService.selectedUser$.subscribe(
       user => {
         if(user) {
@@ -64,5 +72,9 @@ export class DecisionspaceComponent {
         }
       }
     )
+  }
+
+  ngOnDestroy() {
+    //this._dsService.disconnect();
   }
 }

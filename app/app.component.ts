@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 
 import { DecisionspacesComponent } from './decisionspace/decisionspaces.component';
 import { SecurityComponent } from './security/security.component';
+import { AppService } from './app.service'
+
+import {SocketFactoryService} from './socketFactory/socketFactory.service'
 
 @Component({
   selector: 'ud2d',
@@ -25,8 +28,6 @@ import { SecurityComponent } from './security/security.component';
       float:right;
     }
 
-    
-
     content {
       position:absolute;
       top:50px; left:0; right:0; bottom:20px;
@@ -49,7 +50,7 @@ import { SecurityComponent } from './security/security.component';
       <nav>
         <a routerLink="/decisionspaces" routerLinkActive="active">All decision spaces</a>
         <a routerLink="/decisionspaces">My decision spaces</a>
-
+        <a routerLink="/people">People</a>
         <div class="profile">switch user: <ud2d-security></ud2d-security></div>
 
       </nav>
@@ -59,9 +60,20 @@ import { SecurityComponent } from './security/security.component';
       <router-outlet></router-outlet>
     </content>
 
-    <footer>ud2d project</footer>    
+    <footer>udm project</footer>    
   `
 })
 export class AppComponent {
-  title = 'UD2D';
+
+  constructor(private _appService: AppService,
+    private socketFactoryService: SocketFactoryService
+  ) {}
+
+  ngOnInit() {
+    this._appService.connect();
+
+  }
+
+  title = 'UDM';
+
 }

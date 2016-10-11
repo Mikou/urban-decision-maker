@@ -5,7 +5,7 @@ import { DecisionspaceComponent } from './decisionspace.component';
 import { DecisionspacesComponent } from './decisionspaces.component';
 import { ToolbarModule } from './toolbar/toolbar.module';
 import { CanvasModule } from './canvas/canvas.module';
-
+import { DecisionspaceService } from './decisionspace.service';
 
 @NgModule({
   imports: [ 
@@ -15,6 +15,7 @@ import { CanvasModule } from './canvas/canvas.module';
     CanvasModule,
     
   ],
+  providers: [ DecisionspaceService ],
   declarations: [ DecisionspaceComponent, DecisionspacesComponent ],
   exports: [ DecisionspacesComponent ]
 })

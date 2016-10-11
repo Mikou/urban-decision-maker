@@ -26,5 +26,6 @@ export class VislistComponent {
     {id:5, type:"visItem", name:"vis5", url:"http://dummyvis.com/#5"},
     {id:6, type:"visItem", name:"vis6", url:"http://dummyvis.com/#6"},
     {id:7, type:"visItem", name:"vis7", url:"http://dummyvis.com/#7"},
+    {id:8, type:"visItem", name:"vis0", url:"http://dummyvis.com/#0"}
   ];
 }
