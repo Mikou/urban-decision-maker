@@ -2,13 +2,7 @@ import {User} from './user.model';
 import {Role} from './role.model';
 
 export const USERS:User[] = [
-    {name: "bart", role:"anonymous"},
-    {name: "lisa", role:"admin"},
-    {name: "maggy", role:"planner"}
-];
-
-export const ROLES:Role[] = [
-    {name: "super user", id:0},
-    {name: "admin", id:1},
-    {name: "planner", id:2}
+    {username: "bart", roles:["anonymous"], firstname:"bart", lastname:"simpson", password:"s3cr3t", email:"bart@udm.dk", deleted:false},
+    {username: "lisa", roles:["admin"], firstname:"lisa", lastname:"simpson", password:"s3cr3t", email:"lisa@udm.dk", deleted:false},
+    {username: "maggy", roles:["planner"], firstname:"maggy", lastname:"simpson", password:"s3cr3t", email:"maggy@udm.dk", deleted:false},
 ];

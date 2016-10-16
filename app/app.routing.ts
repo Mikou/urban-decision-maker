@@ -5,6 +5,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { DecisionspacesComponent } from './decisionspace/decisionspaces.component';
 import { DecisionspaceComponent } from './decisionspace/decisionspace.component';
 import { ProfilesComponent } from './profile/profiles.component';
+import { LoginComponent } from './security/login.component';
+import { RegisterComponent } from './security/register.component';
 
 const appRoutes: Routes = [
   {
@@ -20,9 +22,17 @@ const appRoutes: Routes = [
     path: 'decisionspaces',
     component: DecisionspacesComponent,
   },
-    {
+  {
     path: 'decisionspaces/:id',
     component: DecisionspaceComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
   },
   {
     path: 'people',

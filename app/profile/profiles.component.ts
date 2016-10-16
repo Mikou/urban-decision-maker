@@ -23,9 +23,5 @@ export class ProfilesComponent {
             this.users = users;
         })
 
-        securityService.getRoles().then(roles => {
-            this.roles = roles;
-        })
-
     }
 }

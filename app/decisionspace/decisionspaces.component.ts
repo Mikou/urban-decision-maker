@@ -52,17 +52,27 @@ export class DecisionspacesComponent {
 
         console.log("SPACES:", this.decisionspaces);
 
-        this.socketFactoryService.messages.subscribe(msg => {
+        /*this.socketFactoryService.messages.subscribe(msg => {
           console.log("DEBUG", msg);
           this.decisionspaces = JSON.parse(msg.message);
         })
+        let sfw = this.socketFactoryService;
+
+        setInterval ( function () {
+            sfw.messages.next({
+                action:'GET',
+                module: 'decisionspaces',
+                author:"dodo",
+                message: 'hello'
+            });
+        }, 1000 );
 
         this.socketFactoryService.messages.next({
             action:'GET',
             module: 'decisionspaces',
             author:"dodo",
             message: 'hello'
-        });
+        });*/
         //this.decisionspaces = this.decisionspaceService.decisionspaces;
     }
 

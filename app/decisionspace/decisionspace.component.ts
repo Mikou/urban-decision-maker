@@ -68,7 +68,7 @@ export class DecisionspaceComponent {
     this.securityService.selectedUser$.subscribe(
       user => {
         if(user) {
-          this.role = user.role;
+          this.role = user.roles.toString();
         }
       }
     )

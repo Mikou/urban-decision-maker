@@ -31,7 +31,7 @@
     'router',
     'immutable',
     //'router-deprecated',
-    'upgrade',
+    'upgrade'
   ];
 
   // Individual files (~300 requests):

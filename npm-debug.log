@@ -27,7 +27,7 @@
 14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:226:5)
 15 verbose pkgid angular2-urban-decision-maker@1.0.0
 16 verbose cwd /home/mekoo/Documents/ud2d/dms_ng
-17 error Linux 4.4.0-38-generic
+17 error Linux 4.4.0-42-generic
 18 error argv "/home/mekoo/.local/bin/node" "/home/mekoo/.local/bin/npm" "start"
 19 error node v6.5.0
 20 error npm  v3.10.6

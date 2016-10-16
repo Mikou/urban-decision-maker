@@ -20,7 +20,7 @@ export class SocketFactoryService {
     constructor(
     ) {
         this.messages = <Subject<Message>>this
-        .connect("ws://127.0.0.1:8000/app")
+        .connect("ws://127.0.0.1:8082/ws")
         .map((response:MessageEvent): Message => {
             let data = JSON.parse(response.data);
             return {
@@ -31,7 +31,7 @@ export class SocketFactoryService {
             }
         });
 
-        this.ws.onopen = function () {
+        this.ws.onopen = function (session:any, details:any) {
             this.messages.next({
                 action:'GET',
                 module: 'decisionspaces',
@@ -39,11 +39,16 @@ export class SocketFactoryService {
                 message: 'hello'
             })
 
+            session.register('udm.frontend.userCreated', function() {console.log("user created")});
+
+            session.call('udm.backend.createUser', [12345, {"test": "ok"}]).then((res:any) => {
+                console.log("user create", res);
+            })
+
         }.bind(this)
 
         this.messages.subscribe(msg => {
-            console.log("RECEVIED");
-            console.log(msg);
+            console.log("RECIEVED", msg);
         });
     }
 
@@ -56,7 +61,7 @@ export class SocketFactoryService {
     }
 
     public create(url:string): Subject<MessageEvent> {
-        this.ws = new WebSocket(url);
+        this.ws = new window["autobahn"].Connection({url: url, realm: 'realm1'});
         let observable = Observable.create((obs:Observable<MessageEvent>) => {
             this.ws.onmessage = obs["next"].bind(obs);
             this.ws.onerror = obs["error"].bind(obs);
@@ -65,8 +70,13 @@ export class SocketFactoryService {
             return this.ws.close.bind(this.ws);
         })
 
+        this.ws.open();
+
         let observer = {
             next: (data: Object) => {
+                this.ws.session.call('udm.backend.createUser', [12345, {"test": "ok"}]).then((res:any) => {
+                    console.log("user create", res);
+                })
                 if (this.ws.readyState === WebSocket.OPEN) {
                     this.ws.send(JSON.stringify(data));
                 }

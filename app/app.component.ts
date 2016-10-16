@@ -6,6 +6,7 @@ import { AppService } from './app.service'
 
 import {SocketFactoryService} from './socketFactory/socketFactory.service'
 
+
 @Component({
   selector: 'ud2d',
   styles: [`
@@ -39,7 +40,6 @@ import {SocketFactoryService} from './socketFactory/socketFactory.service'
     footer {
       position:absolute;
       left:0; right:0; bottom:0;
-      
     }
 
   `],
@@ -50,8 +50,10 @@ import {SocketFactoryService} from './socketFactory/socketFactory.service'
       <nav>
         <a routerLink="/decisionspaces" routerLinkActive="active">All decision spaces</a>
         <a routerLink="/decisionspaces">My decision spaces</a>
+        <a routerLink="/login">Login</a>
+        <a routerLink="/register">Register</a>
         <a routerLink="/people">People</a>
-        <div class="profile">switch user: <ud2d-security></ud2d-security></div>
+        <div class="profile"><ud2d-security></ud2d-security></div>
 
       </nav>
     </header>
@@ -70,7 +72,10 @@ export class AppComponent {
   ) {}
 
   ngOnInit() {
-    this._appService.connect();
+    //this._appService.connect();
+    console.log("Ok, Autobahn loaded", window["autobahn"].version);
+
+    
 
   }
 
