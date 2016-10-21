@@ -3,10 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 import { DecisionspacesComponent } from './decisionspace/decisionspaces.component';
+import { CreateDecisionspaceComponent } from './decisionspace/createdecisionspace.component';
 import { DecisionspaceComponent } from './decisionspace/decisionspace.component';
 import { ProfilesComponent } from './profile/profiles.component';
 import { LoginComponent } from './security/login.component';
 import { RegisterComponent } from './security/register.component';
+import { HomeComponent } from './home.component';
 
 const appRoutes: Routes = [
   {
@@ -16,11 +18,15 @@ const appRoutes: Routes = [
   },
   {
     path: '',
-    component: DecisionspacesComponent
+    component: HomeComponent
   },
   {
     path: 'decisionspaces',
     component: DecisionspacesComponent,
+  },
+  {
+    path: 'create-decisionspace',
+    component: CreateDecisionspaceComponent,
   },
   {
     path: 'decisionspaces/:id',

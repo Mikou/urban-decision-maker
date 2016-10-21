@@ -20,10 +20,6 @@ export class ConnectionService {
         this.connection.open();
     }
 
-    /*register(endpoint:String, fn:Function) {
-        this.connection.session.register(endpoint, fn);
-    }*/
-
     call(endpoint:String, args:any): Promise<any> {
         return this.connection.session.call(endpoint, args);
     }

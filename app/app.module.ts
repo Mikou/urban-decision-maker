@@ -12,6 +12,7 @@ import { DecisionspaceModule } from './decisionspace/decisionspace.module'
 import { SecurityModule } from './security/security.module'
 import { AppService } from './app.service'
 import { routing } from './app.routing';
+import { HomeComponent } from './home.component';
 
 
 @NgModule({
@@ -24,7 +25,7 @@ import { routing } from './app.routing';
     SecurityModule,
     routing
   ],
-  declarations: [ AppComponent ],
+  declarations: [ AppComponent, HomeComponent ],
   providers: [ AppService ],
   bootstrap: [ AppComponent ]
 })

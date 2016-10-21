@@ -2,14 +2,13 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { DecisionspaceService } from './decisionspace.service'
 import { SocketFactoryService} from '../socketFactory/socketFactory.service';
-
+import { ConnectionService} from '../socketFactory/connection.service';
 
 @Component({
     selector: 'ud2d-decisionspaces',
     styles: [`
         .decisionspace-thumb {
             background-color:#fff;
-            float:left;
             padding:20px;
             margin:5px;
             border:1px #ccc solid;
@@ -22,11 +21,16 @@ import { SocketFactoryService} from '../socketFactory/socketFactory.service';
     `],
     template: `
         <h2>List of all decision spaces</h2>
-        <div *ngIf="!decisionspaces">No decision space could be found</div>
-        <div class="decisionspace-thumb" *ngFor='let dspace of decisionspaces'>
-            <div class="name">{{dspace.name}}</div>
-
-            <button (click)="onClick(dspace)">join</button>
+        <div>
+            <div *ngIf="!decisionspaces">No decision space could be found</div>
+            <div class="decisionspace-thumb" *ngFor='let dspace of decisionspaces'>
+                <div class="name">{{dspace.name}}</div>
+                <div class="name">{{dspace.description}}</div>
+                <button (click)="onClick(dspace)">join</button>
+            </div>
+        </div>
+        <div>
+            <button (click)="newDecisionspace()">create a new decision space</button>
         </div>
     `
 })
@@ -37,43 +41,19 @@ export class DecisionspacesComponent {
     constructor(
         private router: Router,
         private decisionspaceService: DecisionspaceService,
-        private socketFactoryService: SocketFactoryService
+        private socketFactoryService: SocketFactoryService,
+        private connectionService: ConnectionService
     ) {}
 
-    /*decisionspaces = [
-        {id:1, name:'decision space 1', path: '1'},
-        {id:2, name:'decision space 2', path: '2'},
-        {id:3, name:'decision space 3', path: '3'},
-        {id:4, name:'decision space 4', path: '4'},
-        {id:4, name:'decision space 5', path: '5'}
-    ]*/
-
     ngOnInit() {
+        this.connectionService.call('udm.backend.decisionspaceList', []).then( (decisionspaces:any) => {
+            this.decisionspaces = decisionspaces;
+        });
+    }
 
-        console.log("SPACES:", this.decisionspaces);
-
-        /*this.socketFactoryService.messages.subscribe(msg => {
-          console.log("DEBUG", msg);
-          this.decisionspaces = JSON.parse(msg.message);
-        })
-        let sfw = this.socketFactoryService;
-
-        setInterval ( function () {
-            sfw.messages.next({
-                action:'GET',
-                module: 'decisionspaces',
-                author:"dodo",
-                message: 'hello'
-            });
-        }, 1000 );
-
-        this.socketFactoryService.messages.next({
-            action:'GET',
-            module: 'decisionspaces',
-            author:"dodo",
-            message: 'hello'
-        });*/
-        //this.decisionspaces = this.decisionspaceService.decisionspaces;
+    newDecisionspace() {
+        let link = ['/create-decisionspace'];
+        this.router.navigate(link);
     }
 
     onClick(dspace:any) {

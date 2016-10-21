@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { USERS }      from './mock';
 import { User }         from './user.model';
+import { DecisionSpace }         from '../decisionspace/decisionspace.model';
 import { CandidateUser }         from './candidateUser.model';
 import { Role }         from './role.model';
 import { Observable } from 'rxjs/Observable';
