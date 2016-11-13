@@ -2,6 +2,7 @@ import{ Component, OnInit, Input } from '@angular/core';
 import{ SecurityService } from './security.service';
 import { CandidateUser } from './candidateUser.model';
 import { User } from './user.model';
+import {NotificationService} from '../notification/notification.service';
 
 @Component({
     selector: 'ud2d-login',
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
     pwd:string;
 
     constructor(
-        private _securitySvc: SecurityService
+        private _securitySvc: SecurityService,
+        private _notificationSvc: NotificationService
     ) {
     }
 
@@ -34,6 +36,13 @@ export class LoginComponent implements OnInit {
         this._securitySvc.userLogin(candidateUser).then((user:User) => {
             console.log(user);
             this._securitySvc.setAuthentication(user)
+        }).catch((err:any) => {
+            
+            if(err.error = 'wamp.error.runtime_error') {
+                var message = err.args[0].message;
+                this._notificationSvc.notify(message);
+            }
+        
         });
     }
 }

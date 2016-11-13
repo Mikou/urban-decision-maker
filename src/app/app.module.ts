@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { DecisionspaceModule} from './decisionspace/decisionspace.module';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
 import { MaterialModule } from '@angular/material';
+import { NotificationModule } from './notification/notification.module';
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -51,6 +52,7 @@ type StoreType = {
     HttpModule,
     SecurityModule,
     DecisionspaceModule,
+    NotificationModule,
     RouterModule.forRoot(ROUTES, { useHash: false })
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection

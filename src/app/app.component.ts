@@ -3,6 +3,7 @@
  */
 import { Component, ViewEncapsulation } from '@angular/core';
 
+import { NotificationComponent } from './notification/notification.component';
 import { AppState } from './app.service';
 
 /*
@@ -16,6 +17,7 @@ import { AppState } from './app.service';
     './app.component.css'
   ],
   template: `
+    <udm-notification></udm-notification>
     <nav>
       <span>
         <a [routerLink]=" ['./'] ">

@@ -5,6 +5,8 @@ import { FormsModule }   from '@angular/forms';
 import { LoginComponent } from './login.component';
 import { RegisterComponent } from './register.component';
 
+import { NotificationModule } from '../notification/notification.module';
+
 import { SecurityComponent } from './security.component';
 import { SecurityService } from './security.service';
 import { SocketFactoryModule } from '../socketFactory/socketFactory.module'
@@ -14,7 +16,8 @@ import { SocketFactoryModule } from '../socketFactory/socketFactory.module'
   imports: [ 
     BrowserModule,
     FormsModule,
-    SocketFactoryModule
+    SocketFactoryModule,
+    NotificationModule
   ],
   providers: [ SecurityService ],
   declarations: [ SecurityComponent, LoginComponent, RegisterComponent ],
