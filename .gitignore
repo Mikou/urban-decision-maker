@@ -1,4 +1,5 @@
 .idea
+.vscode
 typings/**
 node_modules
 jspm_packages
@@ -16,3 +17,8 @@ _temp
 !systemjs.config.js
 !typings/typings.d.ts
 !wallaby.js
+
+# swap vim
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+
