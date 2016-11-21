@@ -12,17 +12,16 @@ export class ConnectionService {
         
        if(!connection.isOpen) {
        let promise = new Promise( (resolve, reject) => {
+                let delay:number = 10;
                 function tryCall () {
                     if(connection.isOpen) {
                         connection.session.call(endpoint, args).then((data) => {
-                            console.log("RESUT:", data);
                             resolve(data);
                         }).catch((err) => {
                             reject(err);
                         });
                     } else {
-                        // It would probably be nicer to add some extra time for every trial.
-                        setTimeout(tryCall, 10);
+                        setTimeout(tryCall, delay = delay*2);
                     }
                 }
                 tryCall();
