@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { ConnectionService} from '../../../socketFactory/connection.service';
 
 import { VisCtrlComponent} from './visCtrl.component';
@@ -46,22 +46,26 @@ export class VisCtrlsComponent {
 
   constructor (
     private connectionService: ConnectionService,
-    private visCtrlService: VisCtrlService
+    private visCtrlService: VisCtrlService,
+    private zone:NgZone
   ) {
     
   }
 
   ngOnInit() {
-    this.getVisCtrls();
+    //this.getVisCtrls();
+    this.visCtrlService.visCtrls.subscribe( (visCtrls) => {
+        this.zone.run( () => this.visCtrls = visCtrls );
+    });
   }
 
-  getVisCtrls() {
+  /*getVisCtrls() {
     this.visCtrlService.getControls().then( (visCtrls:any) => {
         this.visCtrls = visCtrls;
     });
     this.connectionService.call('udm.backend.visCtrls', []).then( (visCtrls:any) => {
         this.visCtrls = visCtrls;
     });
-  };
+  };*/
 
 }
