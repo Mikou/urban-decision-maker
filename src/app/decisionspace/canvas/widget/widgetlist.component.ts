@@ -1,4 +1,4 @@
-import { Component, ViewChild,ViewContainerRef, Compiler, ComponentFactoryResolver, ComponentRef, Input, OnInit } from '@angular/core';
+import { Component, ViewChild,ViewContainerRef, Compiler, ComponentFactoryResolver, ComponentRef, Input, OnInit, NgZone } from '@angular/core';
 import { CommentFeatureComponent } from './featureComponents/comment.component';
 import { WidgetlistitemComponent } from './widgetlistitem.component';
 import { ActivatedRoute } from '@angular/router';
@@ -39,25 +39,22 @@ export class WidgetlistComponent implements OnInit {
     private compiler: Compiler ,
     private componentFactoryResolver: ComponentFactoryResolver,
     private widgetService: WidgetService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private zone:NgZone
     ) {}
-
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
-      this.widgetService.getWidgetsSlowly(params["id"]).then(widgets => {
-        console.log("widgets ready:", widgets);
-        this.widgetitems = widgets;
-        console.log("widgets ready:", this.widgetitems);
-      })
+      this.widgetService.setDecisionSpaceIdAndInit(params["id"]);
+      this.widgetService.widgets.subscribe( (widgets) => {
+        this.zone.run( () => this.widgetitems = widgets );
+      });
     });
   }
-
   onDelete(widgetId:number):void {
     this.widgetitems.forEach((widget:any, index:any, object:any) => {
         if(widget.id == widgetId) object.splice(index,1);
     });
   }
-
   moveRow(src:number, trg:number) {
     if(src > trg) {
       for(let i = trg; i<src; i++)
@@ -70,7 +67,6 @@ export class WidgetlistComponent implements OnInit {
     this.widgetitems[src].order = trg;
     this.widgetitems.sort((a:any, b:any) => a.order - b.order);
   }
-
   deployVisualization(name:string, url:string) {
     let order = this.widgetitems.length;
 
@@ -79,15 +75,12 @@ export class WidgetlistComponent implements OnInit {
         url:url
       } });
   }
-
   deployFeature(src:any) {
     let order = this.widgetitems.length;
     this.widgetitems.push({ id:this.widgetitems.length, type:'widget', cptType:src.cptType, name:src.name, order:order,
       config: src.config
     });
-
   }
-
   droppedWidget(src: any, trg: any) {
     if(src.type === 'visItem') {
       this.deployVisualization(src.name, src.url);
@@ -95,22 +88,7 @@ export class WidgetlistComponent implements OnInit {
       this.deployFeature(src);
     }
     else if(src.type === 'widget') {
-      this.moveRow(src.order, trg.order);
+      this.moveRow(src.gravity, trg.gravity);
     }
   };
-
-  /*widgetitems = [
-    {id:1, order:0, name:"widget1", type:"widget", cptType: 'visualization', 
-    config: {
-      url:"http://dummyvis.com/#1"}
-    },
-    {id:2, order:1, name:"widget2", type:"widget", cptType: 'visualization', 
-    config: {
-      url:"http://dummyvis.com/#2"}
-    },
-    {id:3, order:2, name:"widget3", type:"widget", cptType: 'visualization', 
-    config: {
-      url:"http://dummyvis.com/#3"}
-    },
-  ];*/
 }

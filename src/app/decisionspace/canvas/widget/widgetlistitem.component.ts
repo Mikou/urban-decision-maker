@@ -33,7 +33,6 @@ export class WidgetlistitemComponent {
     @ViewChild('target', {read: ViewContainerRef}) target:any;
     
     cmpRef: ComponentRef<any>
-    visUrl:any;
 
     constructor(
         private domSanitizer: DomSanitizer,
@@ -41,7 +40,6 @@ export class WidgetlistitemComponent {
     ) {}
 
     ngOnInit() {
-        this.visUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(this.item.url);
         let cptType:any;
 
         if(this.item.cptType === 'visualization') {
@@ -54,8 +52,7 @@ export class WidgetlistitemComponent {
 
         let factory = this.componentFactoryResolver.resolveComponentFactory(cptType);
         this.cmpRef = this.target.createComponent(factory)
-        
-        this.cmpRef.instance.config = this.item.config;
+        this.cmpRef.instance.config = this.item.visualization;
     }
 
     deleteWidget(widgetId:number) {
