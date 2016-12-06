@@ -10,6 +10,7 @@ import { NotificationModule } from '../notification/notification.module';
 import { SecurityComponent } from './security.component';
 import { SecurityService } from './security.service';
 import { SocketFactoryModule } from '../socketFactory/socketFactory.module'
+import { securityRouting } from './security.routes';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { SocketFactoryModule } from '../socketFactory/socketFactory.module'
     BrowserModule,
     FormsModule,
     SocketFactoryModule,
-    NotificationModule
+    NotificationModule,
+    securityRouting
   ],
   providers: [ SecurityService ],
   declarations: [ SecurityComponent, LoginComponent, RegisterComponent ],

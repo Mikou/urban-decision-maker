@@ -2,6 +2,7 @@ import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
 import { DecisionspaceComponent } from './decisionspace.component';
+import { DecisionspacePreviewComponent } from './decisionspace-prev.component';
 import { CreateDecisionspaceComponent } from './createdecisionspace.component';
 import { DecisionspacesComponent } from './decisionspaces.component';
 import { ToolbarModule } from './toolbar/toolbar.module';
@@ -18,7 +19,12 @@ import { MaterialModule } from '@angular/material';
     MaterialModule.forRoot()
   ],
   providers: [ DecisionspaceService ],
-  declarations: [ DecisionspaceComponent, CreateDecisionspaceComponent, DecisionspacesComponent ],
+  declarations: [ 
+    DecisionspaceComponent, 
+    DecisionspacePreviewComponent, 
+    CreateDecisionspaceComponent, 
+    DecisionspacesComponent 
+  ],
   exports: [ DecisionspacesComponent ]
 })
 export class DecisionspaceModule {}

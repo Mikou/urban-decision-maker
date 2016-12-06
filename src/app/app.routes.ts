@@ -16,7 +16,12 @@ export const ROUTES: Routes = [
   { path: 'decisionspaces',    component: DecisionspacesComponent },
   { path: 'decisionspaces/:id',    component: DecisionspaceComponent },
   { path: 'create-decisionspace',    component: CreateDecisionspaceComponent },
-  { path: 'login',    component: LoginComponent },
+  { path: 'login',    loadChildren:
+    'security/login#SecurityModule'
+  },
+  { path: 'logout',    loadChildren:
+    'security/logout#SecurityModule'
+  },
   { path: 'register', component: RegisterComponent },
   { path: '**',    component: NoContentComponent },
 ];

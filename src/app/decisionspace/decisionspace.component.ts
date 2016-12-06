@@ -7,27 +7,15 @@ import { DecisionspaceService } from './decisionspace.service';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
-  selector: 'ud2d',
+  selector: 'udm-decisionspace',
   template: `
-    <div class="wrapper">
-      <ud2d-toolbar *ngIf="role==='admin'"></ud2d-toolbar>
-      <ud2d-canvas [decisionspaceId]="'ds'" [ngClass]="role"></ud2d-canvas>
-    </div>
+    <ud2d-canvas [decisionspaceId]="'ds'" [ngClass]="role"></ud2d-canvas>
+    
   `,
   styles: [`
     #content {
-      position:absolute;
-      top:120px;
-      left:0;
-      right:0;
-      bottom:40px;
       background-color:#eee;
       padding:10px;
-    }
-    .wrapper { 
-      background: #eee; 
-      overflow:hidden; 
-      position:relative; 
     }
     ud2d-toolbar {
       padding:0 10px;
@@ -36,8 +24,8 @@ import { Observable } from 'rxjs/Observable';
       background-color:#fff;
     }
     ud2d-canvas {
-      position:relative;
-      width: 100%; float:right;
+      width: 500px;
+      margin: 0 auto;
       height:100%;
       background-color:#fff;
     }

@@ -11,13 +11,6 @@ import { CreateVisCtrlComponent} from './createVisCtrl.component';
     `
       udm-visctrl {
         list-style: none;
-        border: 1px solid #ccc;
-        background-color:#eee;
-        padding: 0 5px;
-        float: left;
-        width: 185px;
-        margin: 5px 0;
-        cursor: move;
       }
 
       udm-createVisCtrl {

@@ -15,6 +15,8 @@ import { ENV_PROVIDERS } from './environment';
 import { ROUTES } from './app.routes';
 // App is our top level component
 import { AppComponent } from './app.component';
+import { MenuComponent } from './menu.component';
+import { ToolbarModule } from './decisionspace/toolbar/toolbar.module';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InternalStateType } from './app.service';
 import { HomeComponent } from './home';
@@ -41,6 +43,7 @@ type StoreType = {
   bootstrap: [ AppComponent ],
   declarations: [
     AppComponent,
+    MenuComponent,
     HomeComponent,
     NoContentComponent,
     XLarge
@@ -52,6 +55,7 @@ type StoreType = {
     HttpModule,
     SecurityModule,
     DecisionspaceModule,
+    ToolbarModule,
     NotificationModule,
     RouterModule.forRoot(ROUTES, { useHash: false })
   ],

@@ -1,6 +1,6 @@
 import { Component, ViewChild,ViewContainerRef, Compiler, ComponentFactoryResolver, ComponentRef, Input, OnInit, NgZone } from '@angular/core';
 import { CommentFeatureComponent } from './featureComponents/comment.component';
-import { WidgetlistitemComponent } from './widgetlistitem.component';
+import { WidgetComponent } from './widget.component';
 import { ActivatedRoute } from '@angular/router';
 
 import { WidgetService } from './widget.service';
@@ -8,22 +8,23 @@ import { WidgetService } from './widget.service';
 @Component({
   selector: 'ud2d-widgetlist',
     styles: [`
-    ud2d-widgetlistitem {
-        float:left;
+    udm-widget {
+        display:block;
+        background-color:#fff;
         padding:10px;
-        margin:10px;
+        margin:10px 0;
         border:1px solid #ccf;
     }
   `],
   template: `
     <h3>{{title}}</h3>
-    <ud2d-widgetlistitem
+    <udm-widget
       *ngFor="let widgetitem of widgetitems" 
       [item]="widgetitem"
       makeDroppable (dropped)="droppedWidget($event, widgetitem)"
       (deleteWidgetNotify)="onDelete($event)"
       #target>
-    </ud2d-widgetlistitem>
+    </udm-widget>
   `
 })
 
@@ -68,12 +69,16 @@ export class WidgetlistComponent implements OnInit {
     this.widgetitems.sort((a:any, b:any) => a.order - b.order);
   }
   deployVisualization(name:string, url:string) {
-    let order = this.widgetitems.length;
-
-    this.widgetitems.push({ id:this.widgetitems.length, type:'widget', cptType:'visualization', name:name, order:order,
-      config: {
+    let gravity = this.widgetitems.length;
+    this.widgetService.addVisualization({ 
+      id:this.widgetitems.length, 
+      type:'widget', 
+      cptType:'visualization', 
+      name:name, gravity:gravity,
+      visualization: {
         url:url
-      } });
+      }
+    });
   }
   deployFeature(src:any) {
     let order = this.widgetitems.length;

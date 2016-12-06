@@ -16,9 +16,16 @@ export class FeaturelistComponent {
   title = 'feature browser';
 
   featureitems = [
-    {id:0, type:"featureItem", name:"comment", cptType:"comment", config:{
-      topicField: "WRITE A TOPIC"
-    }},
-    {id:1, type:"featureItem", name:"comments archive", cptType:"commentarchive", config:{}},
+    {id:0, type:"featureItem", name:"comment", cptType:"comment",
+      onDeploy: new Function(),
+      config:{
+        topicField: "WRITE A TOPIC",
+      }},
+    {id:1, type:"featureItem", name:"comments archive", cptType:"commentarchive", 
+      onDeploy (target:any) {
+        console.log("deployed", target);
+      },
+      config:{}, 
+    },
   ];
 }

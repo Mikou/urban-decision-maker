@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {VislistComponent} from './visControls/vislist.component'
 
 @Component({
-  selector: 'ud2d-toolbar',
+  selector: 'udm-toolbar',
   template: `
     <h2>{{title}}</h2>
     <ud2d-visctrls></ud2d-visctrls>

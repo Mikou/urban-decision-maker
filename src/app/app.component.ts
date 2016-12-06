@@ -2,10 +2,10 @@
  * Angular 2 decorators and services
  */
 import { Component, ViewEncapsulation } from '@angular/core';
-
+import { SecurityService } from './security/security.service';
 import { NotificationComponent } from './notification/notification.component';
 import { AppState } from './app.service';
-
+import { MenuComponent } from './menu.component';
 /*
  * App Component
  * Top Level Component
@@ -18,63 +18,53 @@ import { AppState } from './app.service';
   ],
   template: `
     <udm-notification></udm-notification>
-    <nav>
-      <span>
-        <a [routerLink]=" ['./'] ">
-          Index
-        </a>
-      </span>
-      |
-      <span>
-        <a [routerLink]=" ['./home'] ">
-          Home
-        </a>
-      </span>
-      |
-      <span>
-        <a [routerLink]=" ['./decisionspaces'] ">
-          Decision Spaces
-        </a>
-      </span>
-      |
-      <span>
-        <a [routerLink]=" ['./login'] ">
-          Login
-        </a>
-      </span>
-      |
-      <span>
-        <a [routerLink]=" ['./register'] ">
-          Register
-        </a>
-      </span>
-    </nav>
-
-    <udm-security></udm-security>
-
-    <main>
-      <router-outlet></router-outlet>
-    </main>
-
-    <pre class="app-state">this.appState.state = {{ appState.state | json }}</pre>
-
+    <div class="nav-bar">
+      <nav>
+        <span>
+          <a [routerLink]=" ['./'] ">
+            Home
+          </a>
+        </span>
+        <span>
+          <a [routerLink]=" ['./decisionspaces'] ">
+            Decision Spaces
+          </a>
+        </span>
+        <udm-security></udm-security>
+      </nav>
+    </div>
+    <div class="globalContainer">
+      <udm-menu *ngIf="displayMenu"></udm-menu>
+      <div class="content">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
     <footer>
-      <span>urban decision maker <a [href]="url">@udm</a></span>
+      <div class="note"><p>urban decision maker <a [href]="url">@udm</a></p></div>
     </footer>
   `
 })
 export class AppComponent {
-  udmLogo = 'assets/img/udm-logo.png';
-  name = 'Urban Decision Maker';
-  url = 'https://twitter.com/udm';
+  udmLogo:string = 'assets/img/udm-logo.png';
+  name:string = 'Urban Decision Maker';
+  url:string = 'https://twitter.com/udm';
+  displayMenu:boolean = true;
 
   constructor(
+    private securityService: SecurityService,
     public appState: AppState) {
-
   }
 
   ngOnInit() {
-    console.log('Initial App State', this.appState.state);
+    this.securityService.selectedUser$.subscribe(
+      user => {
+        if(user) {
+          let role = user.roles.toString();
+          if(role === 'admin')
+            this.displayMenu = true;
+        }
+      }
+    )
   }
 
 }

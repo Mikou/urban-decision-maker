@@ -9,9 +9,9 @@ import { ConnectionService } from '../../../socketFactory/connection.service'
 @Injectable()
 export class WidgetService {
 
+    private decisionspaceId:number = null;
     private _widgets: BehaviorSubject<List<any>> = new BehaviorSubject(List([]));
     public widgets: Observable<List<any>> = this._widgets.asObservable();
-
     constructor(
         private connectionService:ConnectionService
     ) {
@@ -23,12 +23,22 @@ export class WidgetService {
     }
 
     setDecisionSpaceIdAndInit(id) {
+        this.decisionspaceId = id;
         this.connectionService.call('udm.backend.getWidgets', [id]).then(res => {
             this._widgets.next(res);
         }).catch(err => {
             console.log(err);
         });
     }
+    addVisualization(widget) {
+        this.connectionService.call('udm.backend.createWidget', [this.decisionspaceId, widget]).then(res => {
+            let widgets = this._widgets.getValue();
+            widgets.push(res);
+            this._widgets.next(widgets);
+        }).catch(err => {
+            console.log(err);
+        });
+    }    
 
     getWidgets(decisionspaceId:number): Promise<any[]> {
         return Promise.resolve(WIDGETS[decisionspaceId-1]);

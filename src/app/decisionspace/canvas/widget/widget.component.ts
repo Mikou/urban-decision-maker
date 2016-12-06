@@ -7,27 +7,28 @@ import {
     ViewContainerRef,
     Input, 
     Output, 
-    EventEmitter 
+    EventEmitter
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MakeDraggable } from '../../shared/draggable/make-draggable.directive';
 import {VisualizationComponent} from './visualization.component';
 import { CommentFeatureComponent } from './featureComponents/comment.component';
 import { CommentarchiveComponent } from './featureComponents/commentarchive.component';
+import { FeatureCtrl } from './featureCtrl.model';
 
 @Component({
-  selector: 'ud2d-widgetlistitem',
+  selector: 'udm-widget',
   template: `
-    <div class="widgetlistitem-content" [makeDraggable]="item">
+    <div [makeDraggable]="item" makeDroppable (dropped)="droppedWidget($event)">
         <li>
-            <p>{{item.name}} <button (click)="deleteWidget(item.id)">delete</button></p>
+            <p>{{item.title}} <button (click)="deleteWidget(item.id)">delete</button></p>
         </li>
         <div #target></div>
     </div>
   `
 })
 
-export class WidgetlistitemComponent {
+export class WidgetComponent {
     @Input() item: any;
     @Output() deleteWidgetNotify: EventEmitter<number> = new EventEmitter<number>();
     @ViewChild('target', {read: ViewContainerRef}) target:any;
@@ -57,5 +58,10 @@ export class WidgetlistitemComponent {
 
     deleteWidget(widgetId:number) {
         this.deleteWidgetNotify.emit(widgetId);
+    }
+
+    droppedWidget(src:FeatureCtrl) {
+        throw new Error("not yet implemented");
+        //src.onDeploy(this);
     }
 }
