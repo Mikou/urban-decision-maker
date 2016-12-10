@@ -4,7 +4,7 @@ import { NotificationService } from './notification.service';
 @Component({
     selector: 'udm-notification',
     template: `
-        <div>{{message}}</div>
+        <div style="background-color:#f00;">{{message}}</div>
     `
 })
 export class NotificationComponent implements OnInit {
