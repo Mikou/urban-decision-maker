@@ -1,8 +1,13 @@
-import { Component, NgZone } from '@angular/core';
+import { Component, NgZone }    from '@angular/core';
 import { DecisionspaceService } from './decisionspace.service'
-import { ConnectionService} from '../socketFactory/connection.service';
-import { Router } from '@angular/router';
+import { ConnectionService}     from '../socketFactory/connection.service';
+import { Router }               from '@angular/router';
+import { SecurityService }      from '../security/security.service';
+//import { Guard }                from '../security/guard.decorator';
+import { User }                 from '../security/user.model';
+import { List }                 from 'immutable';
 
+//@Guard('admin')
 @Component({
     selector: 'udm-decisionspaces',
     styles: [`
@@ -27,21 +32,26 @@ import { Router } from '@angular/router';
         <div>
             <button (click)="newDecisionspace()">create a new decision space</button>
         </div>
+
     `
 })
 export class DecisionspacesComponent {
 
-    decisionspaces:any[];
+    decisionspaces:List<any>;
 
     constructor(
         private decisionspaceService: DecisionspaceService,
         private connectionService: ConnectionService,
+        private securityService: SecurityService,
         private router: Router,
         private zone:NgZone
     ) {}
 
+    
+
     ngOnInit() {
-        this.connectionService.call('udm.backend.decisionspaceList', []).then( (decisionspaces:any) => {
+        const user:User = this.securityService.getCurrentUser();
+        this.decisionspaceService.fetchList(user).subscribe(decisionspaces => {
             this.zone.run( () => this.decisionspaces = decisionspaces );
         });
     }

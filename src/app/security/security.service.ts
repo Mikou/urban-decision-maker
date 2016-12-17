@@ -28,8 +28,8 @@ export class SecurityService {
         
     }
 
-    _selectedUser:BehaviorSubject<User> = new BehaviorSubject<User>(null);
-    selectedUser$ = this._selectedUser.asObservable();
+    private _selectedUser:BehaviorSubject<User> = new BehaviorSubject<User>(null);
+    public selectedUser$ = this._selectedUser.asObservable();
 
     userRegistration(user:User): Promise<string> {
         this.connectionService.call('udm.backend.userRegistration', [user]).then((data) => {
@@ -38,6 +38,15 @@ export class SecurityService {
             console.log("ERROR", err);
         });
         return Promise.resolve("test");
+    }
+
+    getCurrentUser() {
+        let user = this._selectedUser.getValue();
+        /*if(!user){
+            user = new User();
+            user.username = 'anonymous';
+        }*/
+        return user;
     }
 
     userLogin(user:CandidateUser): Promise<User> {
