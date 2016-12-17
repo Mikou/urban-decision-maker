@@ -23,6 +23,7 @@ import { HomeComponent } from './home';
 import { NoContentComponent } from './no-content';
 import { XLarge } from './home/x-large';
 import { SecurityModule } from './security/security.module';
+import { CanActivateTeam, UserToken, Permissions } from './canActivateTeam.service';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -61,7 +62,8 @@ type StoreType = {
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
-    APP_PROVIDERS
+    APP_PROVIDERS,
+    CanActivateTeam, UserToken, Permissions
   ]
 })
 export class AppModule {
